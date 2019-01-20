@@ -23,7 +23,7 @@ switch(cmd) {
         break;
 
     case 'movie-this':
-        
+        movieThis();
         break;
 
     case 'do-what-it-says':
@@ -55,26 +55,38 @@ function spotifyThisSong (song) {
     var spotify = new Spotify(keys.spotify);
 
     if(!song){
-        song = "The Sign";
-    }
-
-    spotify.search({ type: 'track', query: song }, function(err, data) {  
-        if (err) {
-            return console.log('Error occurred: ' + err);
-        }
-
-        for(song of data.tracks.items) {       
-            let artists = [];
-
-            for(artist of song.artists) {
-                artists.push(artist.name) 
-            }
-
-            console.log('\nArtists: ' + artists.join(', '));
+        song = "The Sign Ace of Base";
+        spotify.search({type: 'track', query: song, limit: 1}, function(err, data) {
+            let song = data.tracks.items[0];
+            console.log('\nArtists: ' + song.artists[0].name);
             console.log('Song Title: ' + song.name);
             console.log('Preview Link: ' + song.preview_url);
             console.log('Album: ' + song.album.name);
-        }
-    });
+        });
+    }
+    else {
+        spotify.search({ type: 'track', query: song }, function(err, data) {  
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+    
+            for(song of data.tracks.items) {       
+                let artists = [];
+    
+                for(artist of song.artists) {
+                    artists.push(artist.name) 
+                }
+    
+                console.log('\nArtists: ' + artists.join(', '));
+                console.log('Song Title: ' + song.name);
+                console.log('Preview Link: ' + song.preview_url);
+                console.log('Album: ' + song.album.name);
+            }
+        });
+    }
 
+}
+
+function movieThis() {
+    
 }
