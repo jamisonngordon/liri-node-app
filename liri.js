@@ -9,8 +9,10 @@ let cmd = process.argv[2];
 let search = "";
 
 for(let x = 3; x < process.argv.length; x++) {
-    search += process.argv[x];
+    search += process.argv[x] + " ";
 }
+
+search.trim();
 
 switch(cmd) {
 
@@ -23,7 +25,7 @@ switch(cmd) {
         break;
 
     case 'movie-this':
-        movieThis();
+        movieThis(search);
         break;
 
     case 'do-what-it-says':
@@ -87,6 +89,30 @@ function spotifyThisSong (song) {
 
 }
 
-function movieThis() {
+function movieThis(title) {
+
+    if(!title) {
+        title = "Mr. Nobody"
+    }
     
+    axios.get('http://www.omdbapi.com/?apikey=trilogy&t=' + title.replace(/ /g, '+'))
+    .then(function (response) {
+
+        let data = response.data;
+        console.log('\nTitle: ' + data.Title);
+        console.log('Year: ' + data.Year);
+        console.log('IMDB Rating: ' + data.imdbRating);
+
+        let rottenTomatoes = data.Ratings[1];
+        console.log(rottenTomatoes.Source + ": " + rottenTomatoes.Value);
+
+        console.log('Country: ' + data.Country);
+        console.log('Language(s): ' + data.Language);
+        console.log('Plot: ' + data.Plot);
+        console.log('Actors: ' + data.Actors);
+    })
+    .catch(function (error) {
+        // console.log(error);
+    });
+
 }
