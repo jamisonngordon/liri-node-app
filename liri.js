@@ -1,3 +1,4 @@
+fs = require('fs');
 require("dotenv").config();
 var axios = require("axios");
 var moment = require("moment");
@@ -14,24 +15,28 @@ for(let x = 3; x < process.argv.length; x++) {
 
 search.trim();
 
-switch(cmd) {
+chooseCommand(cmd, search);
 
-    case 'concert-this':
-        concertThis(search);
-        break;
-
-    case 'spotify-this-song':
-        spotifyThisSong(search);
-        break;
-
-    case 'movie-this':
-        movieThis(search);
-        break;
-
-    case 'do-what-it-says':
-
-        break;
-
+function chooseCommand(cmd, search) {
+    switch(cmd) {
+    
+        case 'concert-this':
+            concertThis(search);
+            break;
+    
+        case 'spotify-this-song':
+            spotifyThisSong(search);
+            break;
+    
+        case 'movie-this':
+            movieThis(search);
+            break;
+    
+        case 'do-what-it-says':
+            doWhatItSays();
+            break;
+    
+    }
 }
 
 function concertThis (artist) {
@@ -113,6 +118,18 @@ function movieThis(title) {
     })
     .catch(function (error) {
         // console.log(error);
+    });
+
+}
+
+function doWhatItSays () {
+    
+    fs.readFile('random.txt', 'utf8', function (err, data) {
+        let array = data.split(',');
+        let cmd = array[0];
+        let search = array[1];
+
+        chooseCommand(cmd, search);
     });
 
 }
