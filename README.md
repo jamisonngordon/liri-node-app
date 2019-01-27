@@ -34,6 +34,6 @@ Using the format
 ```
 You can set a command that can be run at any time with
 ```sh
-node liri.js movie-this <movie name here>
+node liri.js do-what-it-says
 ```
 
