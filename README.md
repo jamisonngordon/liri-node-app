@@ -15,17 +15,17 @@ And just like that the app will be properly configured and ready for use.
 ```sh
 node liri.js concert-this <artist/band name here>
 ```
-![alt text](https://github.com/jamisonngordon/liri-node-app/raw/master/src/images/concert-this.png "concert-this example")
+![alt text](https://github.com/jamisonngordon/liri-node-app/raw/master/images/concert-this.png "concert-this example")
 ## To search information about songs
 ```sh
 node liri.js spotify-this-song <song name here>
 ```
-![alt text](https://github.com/jamisonngordon/liri-node-app/raw/master/src/images/spotify-this-song.png "spotify-this-song example")
+![alt text](https://github.com/jamisonngordon/liri-node-app/raw/master/images/spotify-this-song.png "spotify-this-song example")
 ## To search information about movies
 ```sh
 node liri.js movie-this <movie name here>
 ```
-![alt text](https://github.com/jamisonngordon/liri-node-app/raw/master/src/images/movie-this.png "movie-this example")
+![alt text](https://github.com/jamisonngordon/liri-node-app/raw/master/images/movie-this.png "movie-this example")
 ## To run a reusable command
 Navigate to and open the 'random.txt' in the project root.\
 Using the format
