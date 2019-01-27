@@ -10,7 +10,11 @@ let cmd = process.argv[2];
 let search = "";
 
 for(let x = 3; x < process.argv.length; x++) {
-    search += process.argv[x] + " ";
+    if(x > 3)
+    {
+        search += " "
+    }
+    search += process.argv[x];
 }
 
 search.trim();
@@ -41,9 +45,9 @@ function chooseCommand(cmd, search) {
 
 function concertThis (artist) {
     
-    axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
+    axios.get("https://rest.bandsintown.com/artists/" + encodeURIComponent(artist) + "/events?app_id=codingbootcamp")
         .then(function (response) {
-            // console.log(response);
+            console.log(response);
             
             for(let event of response.data) {
                 console.log('\n' + event.venue.name);
